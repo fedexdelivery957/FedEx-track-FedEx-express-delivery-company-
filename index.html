@@ -6,123 +6,90 @@
   <title>FedEx Express Delivery Company</title>
   <style>
     body {
-      margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom, #f4f4f4, #eaeaea);
-      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
     }
-
     header {
       background-color: #4d148c;
-      color: white;
-      padding: 1em;
+      padding: 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      color: white;
     }
-
-    header h1 span {
-      color: #ff6600;
+    header h1 {
+      margin: 0;
+      font-size: 24px;
     }
-
-    .hero {
-      background: url('https://images.unsplash.com/photo-1506619216599-9d16d0903dfd') no-repeat center center/cover;
+    .banner {
+      background: url('bg.jpg') no-repeat center center;
+      background-size: cover;
       color: white;
       text-align: center;
-      padding: 4em 1em;
+      padding: 80px 20px;
+      font-size: 28px;
+      font-weight: bold;
     }
-
-    .hero h2 {
-      font-size: 2.5em;
-    }
-
-    .container {
-      padding: 2em;
-      max-width: 800px;
-      margin: auto;
-    }
-
-    .options {
+    .controls {
       display: flex;
-      justify-content: space-around;
-      margin-bottom: 2em;
       flex-wrap: wrap;
-      gap: 1em;
+      justify-content: center;
+      gap: 15px;
+      padding: 20px;
+      background-color: #f3f3f3;
     }
-
-    .option {
-      text-align: center;
-      padding: 1em;
-      border-radius: 8px;
-      background: white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      width: 30%;
-      min-width: 100px;
+    .controls button {
+      padding: 15px 25px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: white;
+      box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
     }
-
-    .option.track {
+    .controls .track-btn {
       background-color: #4d148c;
       color: white;
-  adding: 20px;
     }
-    track-box {
+    .track-form {
       display: flex;
-      gap: 1em;
       justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 2em;
+      padding: 20px;
+      gap: 10px;
     }
-
-    .track-box input {
-      padding: 0.5em;
-      font-size: 1em;
-      width: 60%;
-      border: 1px solid #ccc;
+    .track-form input {
+      padding: 10px;
+      font-size: 16px;
       border-radius: 5px;
+      border: 2px solid orange;
+      width: 250px;
     }
-
-    .track-box button {
-      background: #ff6600;
-      color: white;
-      padding: 0.5em 1em;
-      font-size: 1em;
+    .track-form button {
+      padding: 10px 15px;
+      background-color: orange;
       border: none;
       border-radius: 5px;
+      color: white;
+      font-size: 16px;
       cursor: pointer;
     }
-
     table {
-      width: 100%;
+      margin: 30px auto;
       border-collapse: collapse;
-      margin-top: 2em;
+      width: 95%;
+      max-width: 700px;
       display: none;
     }
-
     th, td {
-      border: 1px solid #ccc;
-      padding: 1em;
-      text-align: left;
+      border: 1px solid #ddd;
+      padding: 10px;
+      background-color: #fff;
     }
-
     th {
       background-color: #4d148c;
       color: white;
-    }
-
-    .footer {
-      text-align: center;
-      padding: 2em;
-      background-color: #4d148c;
-      color: white;
-      margin-top: 4em;
-    }
-
-    img.responsive-img {
-      width: 100%;
-      height: auto;
-      display: block;
-      max-height: 400px;
-      object-fit: cover;
     }
     .package-image {
       width: 100%;
@@ -131,94 +98,112 @@
       border-radius: 8px;
       margin-top: 15px;
     }
+    footer {
+      background-color: #4d148c;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>fedex express delivery company </h1>
-    <p>Track your shipment worldwide</p>
-  </header>
+<header>
+  <h1>FedEx</h1>
+  <div style="font-size: 24px;">👤</div>
+</header>
 
-  <div class="tracker-box">
-    <h2>Enter Your Tracking ID</h2>
-    <input type="text" id="trackingId" placeholder="e.g., FEDEX-2025V" />
-    <br />
-    <button onclick="trackPackage()">Track Now</button>
-  </div>
+<div class="banner">Connected to tomorrow.</div>
 
-  <table id="resultsTable">
-    <tbody id="resultsBody"></tbody>
-  </table>
+<div class="controls">
+  <button>FARES AND TRANSIT TIMES</button>
+  <button class="track-btn">TRACK</button>
+  <button>SEND</button>
+  <button>SEND</button>
+</div>
 
-  <script>
-    const trackingData = {
-      "FEDEX-5491G": {
-        sender: { name: "Dr Jennifer", country: "Afghanistan", email: "jn@gmail.com", phone: "00746525472" },
-        receiver: { name: "Gustavo Daniel", country: "Argentina", email: "empty", direction: "Jacobo watt 5053", phone: "+54 9 11 3854-8729" },
-        arrival: "23st July 2025",
-        image: "fedex-package.jpg"
-      },
-      "FEDEX-2025V": {
-        sender: { name: "FedEx USA", country: "USA", email: "info@fedex.com", phone: "+1 888-888-8888" },
-        receiver: { name: "Mr Vincent", country: "Nigeria", email: "vincent@gmail.com", direction: "123 Lagos Street", phone: "+234 7012345678" },
-        arrival: "30th July 2025",
-        image: "vincent-package.jpg"
-      },
-      "FEDEX-JULY99": {
-        sender: { name: "Julia Perez", country: "Mexico", email: "j.perez@gmail.com", phone: "+52 123456789" },
-        receiver: { name: "Ahmed Bello", country: "Nigeria", email: "ahmed@gmail.com", direction: "Abuja Road 55", phone: "+234 8023456789" },
-        arrival: "2nd August 2025",
-        image: "ahmed-package.jpg"
-      },
-      "FEDEX-KIM28": {
-        sender: { name: "Kim Ron", country: "Korea", email: "kim@krmail.com", phone: "+82 101234567" },
-        receiver: { name: "Halima Yusuf", country: "Nigeria", email: "halima@gmail.com", direction: "Kaduna North 223", phone: "+234 8134567890" },
-        arrival: "28th July 2025",
-        image: "halima-package.jpg"
-      },
-      "FEDEX-FR77A": {
-        sender: { name: "Claire Dupont", country: "France", email: "claire@poste.fr", phone: "+33 612345678" },
-        receiver: { name: "Chinedu Okafor", country: "Nigeria", email: "chinedu@gmail.com", direction: "Enugu South, Plot 2", phone: "+234 7045678901" },
-        arrival: "5th August 2025",
-        image: "chinedu-package.jpg"
-      }
-    };
+<div class="track-form">
+  <input type="text" id="trackingId" placeholder="TRACKING ID" />
+  <button onclick="trackPackage()">TRACK →</button>
+</div>
 
-    function trackPackage() {
-      const input = document.getElementById("trackingId").value.trim().toUpperCase();
-      const data = trackingData[input];
-      const table = document.getElementById("resultsTable");
-      const body = document.getElementById("resultsBody");
+<table id="resultsTable">
+  <tbody id="resultsBody"></tbody>
+</table>
 
-      if (data) {
-        body.innerHTML = `
-          <tr><th colspan="2">SENDER'S INFORMATION</th></tr>
-          <tr><td>Name</td><td>${data.sender.name}</td></tr>
-          <tr><td>Country</td><td>${data.sender.country}</td></tr>
-          <tr><td>Email</td><td>${data.sender.email}</td></tr>
-          <tr><td>Phone</td><td>${data.sender.phone}</td></tr>
+<footer>
+  © 2025 FedEx | All rights reserved
+</footer>
 
-          <tr><th colspan="2">RECEIVER'S INFORMATION</th></tr>
-          <tr><td>Name</td><td>${data.receiver.name}</td></tr>
-          <tr><td>Country</td><td>${data.receiver.country}</td></tr>
-          <tr><td>Email</td><td>${data.receiver.email}</td></tr>
-          <tr><td>Direction</td><td>${data.receiver.direction}</td></tr>
-          <tr><td>Phone</td><td>${data.receiver.phone}</td></tr>
+<script>
+const trackingData = {
+  "FEDEX-5491G": {
+    sender: { name: "Dr Jennifer", country: "Afghanistan", email: "jn@gmail.com", phone: "00746525472" },
+    receiver: { name: "Gustavo Daniel", country: "Argentina", email: "empty", direction: "Jacobo watt 5053", phone: "+54 9 11 3854-8729" },
+    arrival: "23st July 2025",
+    image: "fedex-package.jpg"
+  },
+  "FEDEX-2025V": {
+    sender: { name: "FedEx USA", country: "USA", email: "info@fedex.com", phone: "+1 888-888-8888" },
+    receiver: { name: "Mr Vincent", country: "Nigeria", email: "vincent@gmail.com", direction: "123 Lagos Street", phone: "+234 7012345678" },
+    arrival: "30th July 2025",
+    image: "vincent-package.jpg"
+  },
+  "FEDEX-JULY99": {
+    sender: { name: "Julia Perez", country: "Mexico", email: "j.perez@gmail.com", phone: "+52 123456789" },
+    receiver: { name: "Ahmed Bello", country: "Nigeria", email: "ahmed@gmail.com", direction: "Abuja Road 55", phone: "+234 8023456789" },
+    arrival: "2nd August 2025",
+    image: "ahmed-package.jpg"
+  },
+  "FEDEX-KIM28": {
+    sender: { name: "Kim Ron", country: "Korea", email: "kim@krmail.com", phone: "+82 101234567" },
+    receiver: { name: "Halima Yusuf", country: "Nigeria", email: "halima@gmail.com", direction: "Kaduna North 223", phone: "+234 8134567890" },
+    arrival: "28th July 2025",
+    image: "halima-package.jpg"
+  },
+  "FEDEX-FR77A": {
+    sender: { name: "Claire Dupont", country: "France", email: "claire@poste.fr", phone: "+33 612345678" },
+    receiver: { name: "Chinedu Okafor", country: "Nigeria", email: "chinedu@gmail.com", direction: "Enugu South, Plot 2", phone: "+234 7045678901" },
+    arrival: "5th August 2025",
+    image: "chinedu-package.jpg"
+  }
+};
 
-          <tr><th colspan="2">PACKAGE INFORMATION</th></tr>
-          <tr><td>Date of Arrival</td><td>${data.arrival}</td></tr>
+function trackPackage() {
+  const input = document.getElementById("trackingId").value.trim().toUpperCase();
+  const data = trackingData[input];
+  const table = document.getElementById("resultsTable");
+  const body = document.getElementById("resultsBody");
 
-          <tr><th colspan="2">PACKAGE IMAGE</th></tr>
-          <tr><td colspan="2"><img src="${data.image}" class="package-image"></td></tr>
-        `;
-        table.style.display = "table";
-      } else {
-        table.style.display = "none";
-        alert("❌ Invalid Tracking ID. Please try again.");
-      }
-    }
-  </script>
+  if (data) {
+    body.innerHTML = `
+      <tr><th colspan="2">SENDER'S INFORMATION</th></tr>
+      <tr><td>Name</td><td>${data.sender.name}</td></tr>
+      <tr><td>Country</td><td>${data.sender.country}</td></tr>
+      <tr><td>Email</td><td>${data.sender.email}</td></tr>
+      <tr><td>Phone</td><td>${data.sender.phone}</td></tr>
+
+      <tr><th colspan="2">RECEIVER'S INFORMATION</th></tr>
+      <tr><td>Name</td><td>${data.receiver.name}</td></tr>
+      <tr><td>Country</td><td>${data.receiver.country}</td></tr>
+      <tr><td>Email</td><td>${data.receiver.email}</td></tr>
+      <tr><td>Direction</td><td>${data.receiver.direction}</td></tr>
+      <tr><td>Phone</td><td>${data.receiver.phone}</td></tr>
+
+      <tr><th colspan="2">PACKAGE INFORMATION</th></tr>
+      <tr><td>Date of Arrival</td><td>${data.arrival}</td></tr>
+
+      <tr><th colspan="2">PACKAGE IMAGE</th></tr>
+      <tr><td colspan="2"><img src="${data.image}" class="package-image"></td></tr>
+    `;
+    table.style.display = "table";
+  } else {
+    table.style.display = "none";
+    alert("❌ Invalid Tracking ID. Please try again.");
+  }
+}
+</script>
 
 </body>
 </html>
