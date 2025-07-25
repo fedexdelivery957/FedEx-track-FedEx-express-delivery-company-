@@ -1,214 +1,141 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FedEx Express Delivery Company</title>
+  <title>FedEx Tracking</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: Arial, sans-serif;
+      background: #fff;
       margin: 0;
       padding: 0;
-      background-color: #fff;
     }
     header {
-      background-color: #4d148c;
+      background: #4d148c;
+      color: #fff;
       padding: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      color: white;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 24px;
-    }
-    .banner {
-      background: url('bg.jpg') no-repeat center center;
-      background-size: cover;
-      color: white;
       text-align: center;
-      padding: 80px 20px;
-      font-size: 28px;
-      font-weight: bold;
     }
-    .controls {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
+    main {
       padding: 20px;
-      background-color: #f3f3f3;
     }
-    .controls button {
-      padding: 15px 25px;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
-      background-color: white;
-      box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
+    input[type="text"] {
+      width: 300px;
+      padding: 10px;
+      margin-right: 10px;
     }
-    .controls .track-btn {
+    button {
+      padding: 10px 20px;
       background-color: #4d148c;
       color: white;
-    }
-    .track-form {
-      display: flex;
-      justify-content: center;
-      padding: 20px;
-      gap: 10px;
-    }
-    .track-form input {
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 5px;
-      border: 2px solid orange;
-      width: 250px;
-    }
-    .track-form button {
-      padding: 10px 15px;
-      background-color: orange;
       border: none;
-      border-radius: 5px;
-      color: white;
-      font-size: 16px;
       cursor: pointer;
     }
     table {
-      margin: 30px auto;
+      width: 100%;
+      margin-top: 20px;
       border-collapse: collapse;
-      width: 95%;
-      max-width: 700px;
-      display: none;
     }
     th, td {
       border: 1px solid #ddd;
       padding: 10px;
-      background-color: #fff;
+      text-align: left;
     }
     th {
-      background-color: #4d148c;
-      color: white;
+      background-color: #f3f3f3;
     }
     .package-image {
       width: 100%;
-      max-width: 400px;
+      max-width: 500px;
       height: auto;
-      border-radius: 8px;
-      margin-top: 15px;
+      display: block;
+      margin: 10px auto;
     }
-    footer {
-      background-color: #4d148c;
-      color: white;
-      text-align: center;
-      padding: 10px 0;
-      font-size: 14px;
+    #map {
+      height: 300px;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-
-<header>
-  <h1>FedEx</h1>
-  <div style="font-size: 24px;">👤</div>
-</header>
-  <img src="fedex-worker.jpg" class="responsive-img">
-<div class="controls">
-  <button>FARES AND TRANSIT TIMES</button>
-  <button class="track-btn">TRACK</button>
-  <button>SEND</button>
-  <button>SEND</button>
-</div>
-
-<div class="track-form">
-  <input type="text" id="trackingId" placeholder="TRACKING ID" />
-  <button onclick="trackPackage()">TRACK →</button>
-</div>
-
-<table id="resultsTable">
+  <header>
+    <h1>FedEx Package Tracking</h1>
+  </header>
+  <main>
+    <input type="text" id="trackingId" placeholder="Enter Tracking Number" />
+    <button onclick="trackPackage()">Track</button><table id="resultsTable" style="display:none">
   <tbody id="resultsBody"></tbody>
 </table>
 
-<footer>
-  © 2025 FedEx | All rights reserved
-</footer>
+<div id="map" style="display:none"></div>
 
- <script>
-const trackingData = {
-  "FEDEX-5491G": {
-    sender: { name: "Dr Jennifer", country: "Afghanistan", email: "jn@gmail.com", phone: "00746525472" },
-    receiver: { name: "Gustavo Daniel", country: "Argentina", email: "empty", direction: "Jacobo watt 5053", phone: "+54 9 11 3854-8729" },
-    arrival: "23st July 2025",
-    location: "Dubai International Airport",
-    image: "fedex-package.jpg"
-  }, 
-  "FEDEX-2025V": {
-    sender: { name: "FedEx USA", country: "USA", email: "info@fedex.com", phone: "+1 888-888-8888" },
-    receiver: { name: "Mr Vincent", country: "Nigeria", email: "vincent@gmail.com", direction: "123 Lagos Street", phone: "+234 7012345678" },
-    arrival: "30th July 2025",
-    location: "In transit - Casablanca, Morocco",
-    image: "fedex-package.jpg"
-  },
-  "FEDEX-JULY99": {
-    sender: { name: "Julia Perez", country: "Mexico", email: "j.perez@gmail.com", phone: "+52 123456789" },
-    receiver: { name: "Ahmed Bello", country: "Nigeria", email: "ahmed@gmail.com", direction: "Abuja Road 55", phone: "+234 8023456789" },
-    arrival: "2nd August 2025",
-    location: "Arrived in Lagos, Nigeria",
-    image: "fedex-package.jpg"
-  },
-  "FEDEX-KIM28": {
-    sender: { name: "Kim Ron", country: "Korea", email: "kim@krmail.com", phone: "+82 101234567" },
-    receiver: { name: "Halima Yusuf", country: "Nigeria", email: "halima@gmail.com", direction: "Kaduna North 223", phone: "+234 8134567890" },
-    arrival: "28th July 2025",
-    location: "At customs clearance - Abuja",
-    image: "fedex-package.jpg"
-  },
-  "FEDEX-FR77A": {
-    sender: { name: "Claire Dupont", country: "France", email: "claire@poste.fr", phone: "+33 612345678" },
-    receiver: { name: "Chinedu Okafor", country: "Nigeria", email: "chinedu@gmail.com", direction: "Enugu South, Plot 2", phone: "+234 7045678901" },
-    arrival: "5th August 2025",
-    location: "Departed Paris CDG Airport",
-    image: "fedex-package.jpg"
-  }
-};
+  </main>  <script>
+    const trackingData = {
+      "FEDEX-5491G": {
+        sender: { name: "Dr Jennifer", country: "Afghanistan", email: "jn@gmail.com", phone: "00746525472" },
+        receiver: { name: "Gustavo Daniel", country: "Argentina", email: "empty", direction: "Jacobo watt 5053", phone: "+54 9 11 3854-8729" },
+        arrival: "23st July 2025",
+        location: "Dubai International Airport",
+        image: "fedex-package.jpg",
+        coords: { lat: 25.2532, lng: 55.3657 }
+      },
+      "FEDEX-2025V": {
+        sender: { name: "FedEx USA", country: "USA", email: "info@fedex.com", phone: "+1 888-888-8888" },
+        receiver: { name: "Mr Vincent", country: "Nigeria", email: "vincent@gmail.com", direction: "123 Lagos Street", phone: "+234 7012345678" },
+        arrival: "30th July 2025",
+        location: "In transit - Casablanca, Morocco",
+        image: "fedex-package.jpg",
+        coords: { lat: 33.5731, lng: -7.5898 }
+      }
+    };
 
-function trackPackage() {
-  const input = document.getElementById("trackingId").value.trim().toUpperCase();
-  const data = trackingData[input];
-  const table = document.getElementById("resultsTable");
-  const body = document.getElementById("resultsBody");
+    function trackPackage() {
+      const input = document.getElementById("trackingId").value.trim().toUpperCase();
+      const data = trackingData[input];
+      const table = document.getElementById("resultsTable");
+      const body = document.getElementById("resultsBody");
+      const mapDiv = document.getElementById("map");
 
-  if (data) {
-    body.innerHTML = `
-      <tr><th colspan="2">SENDER'S INFORMATION</th></tr>
-      <tr><td>Name</td><td>${data.sender.name}</td></tr>
-      <tr><td>Country</td><td>${data.sender.country}</td></tr>
-      <tr><td>Email</td><td>${data.sender.email}</td></tr>
-      <tr><td>Phone</td><td>${data.sender.phone}</td></tr>
+      if (data) {
+        body.innerHTML = `
+          <tr><th colspan="2">SENDER'S INFORMATION</th></tr>
+          <tr><td>Name</td><td>${data.sender.name}</td></tr>
+          <tr><td>Country</td><td>${data.sender.country}</td></tr>
+          <tr><td>Email</td><td>${data.sender.email}</td></tr>
+          <tr><td>Phone</td><td>${data.sender.phone}</td></tr>
 
-      <tr><th colspan="2">RECEIVER'S INFORMATION</th></tr>
-      <tr><td>Name</td><td>${data.receiver.name}</td></tr>
-      <tr><td>Country</td><td>${data.receiver.country}</td></tr>
-      <tr><td>Email</td><td>${data.receiver.email}</td></tr>
-      <tr><td>Direction</td><td>${data.receiver.direction}</td></tr>
-      <tr><td>Phone</td><td>${data.receiver.phone}</td></tr>
+          <tr><th colspan="2">RECEIVER'S INFORMATION</th></tr>
+          <tr><td>Name</td><td>${data.receiver.name}</td></tr>
+          <tr><td>Country</td><td>${data.receiver.country}</td></tr>
+          <tr><td>Email</td><td>${data.receiver.email}</td></tr>
+          <tr><td>Direction</td><td>${data.receiver.direction}</td></tr>
+          <tr><td>Phone</td><td>${data.receiver.phone}</td></tr>
 
-      <tr><th colspan="2">PACKAGE INFORMATION</th></tr>
-      <tr><td>Date of Arrival</td><td>${data.arrival}</td></tr>
-      <tr><td>Current Location</td><td><strong>${data.location}</strong></td></tr>
+          <tr><th colspan="2">PACKAGE INFORMATION</th></tr>
+          <tr><td>Date of Arrival</td><td>${data.arrival}</td></tr>
+          <tr><td>Current Location</td><td><strong>${data.location}</strong></td></tr>
 
-      <tr><th colspan="2">PACKAGE IMAGE</th></tr>
-      <tr><td colspan="2"><img src="${data.image}" class="package-image"></td></tr>
-    `;
-    table.style.display = "table";
-  } else {
-    table.style.display = "none";
-    alert("❌ Invalid Tracking ID. Please try again.");
-  }
-}
-   </script>
+          <tr><th colspan="2">PACKAGE IMAGE</th></tr>
+          <tr><td colspan="2"><img src="${data.image}" class="package-image"></td></tr>
+        `;
 
-</body>
+        table.style.display = "table";
+        mapDiv.style.display = "block";
+        initMap(data.coords.lat, data.coords.lng);
+      } else {
+        table.style.display = "none";
+        mapDiv.style.display = "none";
+        alert("❌ Invalid Tracking ID. Please try again.");
+      }
+    }
+
+    function initMap(lat, lng) {
+      const location = { lat, lng };
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 8,
+        center: location,
+      });
+      new google.maps.Marker({ position: location, map: map });
+    }
+  </script>  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY"></script></body>
 </html>
- 
