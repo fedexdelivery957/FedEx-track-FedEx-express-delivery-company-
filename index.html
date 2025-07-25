@@ -3,19 +3,67 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FedEx Package Tracker</title>
+  <title>FedEx Express Delivery Company</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f6f9;
       margin: 0;
-      padding: 0;
-      text-align: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #f4f4f4, #eaeaea);
+      overflow-x: hidden;
     }
+
     header {
       background-color: #4d148c;
       color: white;
-      padding: 20px;
+      padding: 1em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header h1 span {
+      color: #ff6600;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1506619216599-9d16d0903dfd') no-repeat center center/cover;
+      color: white;
+      text-align: center;
+      padding: 4em 1em;
+    }
+
+    .hero h2 {
+      font-size: 2.5em;
+    }
+
+    .container {
+      padding: 2em;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 2em;
+      flex-wrap: wrap;
+      gap: 1em;
+    }
+
+    .option {
+      text-align: center;
+      padding: 1em;
+      border-radius: 8px;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 30%;
+      min-width: 100px;
+    }
+
+    .option.track {
+      background-color: #4d148c;
+      color: white;
+  adding: 20px;
     }
     .tracker-box {
       margin: 40px auto;
