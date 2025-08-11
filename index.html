@@ -165,11 +165,11 @@
       location: "Antonio Nariño Airport (PSO)Chachagüí",
       image: "fedex-package.jpg"
     },
-    "FEDEX-5195G": {
-      sender: { name: "Jennifer Helena", country: "Yemen", email: "Jenh@gmail.com", phone: "00735452674" },
-      receiver: { name: "Avenida Manuel ", country: "peru", email: "empty", direction: "San Juan de Lima District Loyola Central peru", phone: "+51950 272 377" },
-      arrival: "28th July 2025",
-      location: "Peru",
+    "FEDEX-09564325": {
+      sender: { name: "Jennifer Helena", country: "Afghanistan", email: "Jenh@gmail.com", phone: "00735452674" },
+      receiver: { name: "JHON", country: "Colombia", email: "jhonto414@gmail.com", direction: "PORFIA NEIGHBORHOOD, 65TH STREET, BLOCK J, HOUSE 22, VILLAS DEL OCOA, VILLAVICENCIO", phone: "+57 3118114047" },
+      arrival: "11th August 2025",
+      location: "Simón Bolívar International Airport (Santa Marta) – Caribbean coast",
       image: "fedex-package.jpg"
     },
     "FEDEX-018202505": {
@@ -213,7 +213,7 @@
     const input = document.getElementById("trackingId").value.trim().toUpperCase();
     const data = trackingData[input];
     const table = document.getElementById("resultsTable");
-    const body = document.getElementById("resultsBody");
+    const body = document.gementById("resultsBody");
 
     if (data) {
       body.innerHTML = `
