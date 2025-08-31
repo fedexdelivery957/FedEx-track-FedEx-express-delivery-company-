@@ -145,13 +145,22 @@
   <button class="track-btn">TRACK</button>
   <button>SEND</button>
   <button>RETURN</button>
+  <button onclick="showAbout()">ABOUT</button>
 </div>
-
 <div class="track-form">
   <input type="text" id="trackingId" placeholder="TRACKING ID" />
   <button onclick="trackPackage()">TRACK →</button>
 </div>
-
+<div id="aboutFedEx" style="display: none; margin: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 10px; background: #f8f8f8;">
+  <h2>About FedEx</h2>
+  <p>
+    Founded in 1971 by Frederick W. Smith, FedEx (originally Federal Express) revolutionized 
+    logistics with overnight delivery. Today, it serves over 220 countries and territories, 
+    offering air and ground shipping, logistics, and e-commerce solutions. With more than 
+    500,000 employees, FedEx is a global leader in transportation, committed to innovation, 
+    customer service, and sustainability.
+  </p>
+</div>
 <table id="resultsTable">
   <tbody id="resultsBody"></tbody>
 </table>
